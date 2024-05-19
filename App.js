@@ -1,52 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-/*const heading = React.createElement(
-  "h1",
-  { id: "heading" },
-  "Hello world from React"
-);
-console.log(heading); // RETURNS AN OBJECT
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(heading);
 
+//React.createElement --JS object ==> HTMLElement(render)
 
-nested dom
-<div>
-    <div>
-        <h1>I am h1 TAg</h1>
-    </div>
-</div>
+//JSX code...html like syntax,
 
-const parent = React.createElement(
-  "div",
-  { id: "parent" },
-  React.createElement(
-    "div",
-    { id: "child" },
-    React.createElement("h1", {}, "Iam a h1 tag")
-  )
+const elem = <span>React Element </span>;
+const title = <h1 className="head">hello JSX!!</h1>;
+//console.log(jsxHeading);
+
+//React Functional component
+// const HeadingComponent = () => {
+//   return;
+//   <h1 className="heading">Namaste React Functional Component</h1>;
+// };
+
+const HeadingComponent = () => (
+  <div id="container">
+    {title}
+
+    <h1 className="heading">Namaste React Functional Component</h1>
+  </div>
 );
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(parent);
-
-<div>
-    <div>
-        <h1>I am h1 TAg</h1>
-        <h2>I am h2 Tag</h2>
-    </div>
-</div>
-
-*/
-const parent = React.createElement("div", { id: "parent" }, [
-  React.createElement("div", { id: "child" }, [
-    React.createElement("h1", {}, "I am a h1 tag"),
-    React.createElement("h2", {}, "I am a h2 tag"),
-  ]),
-  React.createElement("div", { id: "child2" }, [
-    React.createElement("h1", {}, "I am a h1 tag"),
-    React.createElement("h2", {}, "I am a h2 tag"),
-  ]),
-]);
-console.log(parent); //object
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(parent);
+root.render(<HeadingComponent />);
