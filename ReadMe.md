@@ -18,3 +18,20 @@
 -HTTPs
 -Tree Shaking - remove unused code
 -Different dev and prod bundles
+
+# Namaste Food Layout sketch
+
+/_
+Header
+-logo
+-navigational items
+Body
+-Search bar
+-Restaurant card container
+-Restaurant card
+Image ,Name, star rating, time of delivery
+Footer
+-copyrights
+-Address
+-contact links
+_/
