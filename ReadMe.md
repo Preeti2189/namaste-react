@@ -43,3 +43,10 @@ Two types of export/ import:
 2- Named export/import
 -Export const Component name;
 -import {Component} from "path"
+
+# React Hooks
+
+normal Javascript utility function
+
+- useState() -super powerful state variables in react
+- useEffect()
