@@ -35,3 +35,11 @@ Footer
 -Address
 -contact links
 _/
+Two types of export/ import:
+1-Default export/ import
+-Export default Component Name;
+-import Component Name from "path";
+
+2- Named export/import
+-Export const Component name;
+-import {Component} from "path"
