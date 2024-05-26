@@ -1,58 +1,32 @@
 import RestaurantCard from "./RestaurantCard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Shimmer from "./Shimmer";
 const Body = () => {
   //Local State Variable
-  const [listOfRestaurant, setListOfRestaurant] = useState([
-    {
-      type: "restaurant",
-      data: {
-        type: "F",
-        id: "334475",
-        name: "KFC",
-        cuisines: ["Burger", "Biryani", "American", "Snacks"],
-        avgRating: "3.8",
-        costForTwo: "44000",
-        deliveryTime: 36,
-      },
-    },
-    {
-      type: "restaurant",
-      data: {
-        type: "F",
-        id: "334576",
-        name: "Pizza Live",
-        cuisines: ["Burger", "Biryani", "American", "Snacks"],
-        avgRating: "4.2",
-        costForTwo: "44000",
-        deliveryTime: 20,
-      },
-    },
-    {
-      type: "restaurant",
-      data: {
-        type: "F",
-        id: "334677",
-        name: "Burger KIng",
-        cuisines: ["Burger", "Biryani", "American", "Snacks"],
-        avgRating: "3.8",
-        costForTwo: "54000",
-        deliveryTime: 39,
-      },
-    },
-    {
-      type: "restaurant",
-      data: {
-        type: "F",
-        id: "334778",
-        name: "PizzaWallah",
-        cuisines: ["Burger", "Biryani", "American", "Snacks"],
-        avgRating: "4.1",
-        costForTwo: "44000",
-        deliveryTime: 26,
-      },
-    },
-  ]);
+  const [listOfRestaurant, setListOfRestaurant] = useState([]);
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.600828&lng=77.446917&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
+
+    const json = await data.json();
+
+    console.log(json);
+    console.log(
+      json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+    );
+    setListOfRestaurant(
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+  };
+
+  if (listOfRestaurant.length === 0) {
+    return <Shimmer />;
+  }
   return (
     <div className="body">
       <div className="filter">
@@ -71,7 +45,7 @@ const Body = () => {
       </div>
       <div className="res-container">
         {listOfRestaurant.map((restaurant) => (
-          <RestaurantCard key={restaurant.data.id} resData={restaurant} />
+          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>
     </div>
