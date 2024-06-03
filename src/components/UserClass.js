@@ -1,56 +1,36 @@
 import React from "react";
+import { json } from "react-router-dom";
 
 class UserClass extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props.name + "Child Constructor");
-
     this.state = {
-      count1: 1,
-      count2: 4,
-      count3: 7,
+      userInfo: {
+        name: "Dummy",
+        location: "Default",
+        avatar_url: "",
+      },
     };
+    //console.log(this.props.name + "Child Constructor");
   }
-  componentDidMount() {
-    console.log("Component DId Mount- child" + this.props.name);
+  async componentDidMount() {
+    //console.log("Component DId Mount- child" + this.props.name);
+    //api calls made here:
+    const data = await fetch("https://api.github.com/users/Preeti2189");
+    const json = await data.json();
+    console.log(json);
+    this.setState({
+      userInfo: json,
+    });
+    console.log(json);
   }
   render() {
-    console.log(this.props.name + "Child render");
-    const { name, location } = this.props;
-    const { count1, count2, count3 } = this.state;
+    //console.log(this.props.name + "Child render");
+    const { name, location, avatar_url } = this.state.userInfo;
     return (
       <div className="user-card">
-        <h1>Count : {count1}</h1>
-        <button
-          onClick={() => {
-            this.setState({
-              count1: this.state.count1 + 1,
-            });
-          }}
-        >
-          tap Here!!
-        </button>
+        <img src={avatar_url} />
         <h2>Name: {name}</h2>
-        <h1>Count : {count2}</h1>
-        <button
-          onClick={() => {
-            this.setState({
-              count2: this.state.count2 * 2,
-            });
-          }}
-        >
-          multiply by 2
-        </button>
-        <h1>Count : {count3}</h1>
-        <button
-          onClick={() => {
-            this.setState({
-              count3: this.state.count3 + 4,
-            });
-          }}
-        >
-          plus4
-        </button>
         <h3>Location: {location}</h3>
         <h3>Contact : 9891492000</h3>
       </div>
